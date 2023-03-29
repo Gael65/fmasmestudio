@@ -54,12 +54,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <!-- Nombre input-->
-                                <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre del producto *" value="{{ $producto->nombre }}" />
+                                <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre del producto *" value="{{ old('nombre') ?? $producto->nombre }}" />
                             </div>
 
                             <div class="form-group">
                                 <!-- Concepto input-->
-                                <input class="form-control" id="concepto" name="concepto" type="text" placeholder="Concepto del producto *" value="{{ $producto->concepto }}" />
+                                <input class="form-control" id="concepto" name="concepto" type="text" placeholder="Concepto del producto *" value="{{ old('concepto') ?? $producto->concepto }}" />
                             </div>
                             
                             <!-- <div class="form-group">
@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <!-- Servicio input-->
                                 <select class="form-control" id="servicio" name="servicio">
-                                    <option value="{{ $producto->servicio }}" hidden>{{ $producto->servicio }}</option>
+                                    <option value="{{ old('servicio') ?? $producto->servicio }}" hidden>{{ old('servicio') ?? $producto->servicio }}</option>
                                     <option value="F+M estudio">F+M estudio</option>
                                     <option value="Librettura">Librettura</option>
                                     <option value="Concrettura">Concrettura</option>
@@ -79,14 +79,14 @@
 
                             <div class="form-group">
                                 <!-- Precio input-->
-                                <input class="form-control" id="precio" name="precio" type="text" placeholder="Precio del producto *" value="{{ $producto->precio }}" />
+                                <input class="form-control" id="precio" name="precio" type="text" placeholder="Precio del producto *" value="{{ old('precio') ?? $producto->precio }}" />
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group form-group-textarea mb-md-0">
                                 <!-- Descripcion input-->
-                                <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripción del producto *" >{{ $producto->descripcion }}</textarea>
+                                <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Descripción del producto *" >{{ old('descripcion') ?? $producto->descripcion }}</textarea>
                             </div>
                         </div>
                     </div>
