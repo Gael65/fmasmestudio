@@ -63,7 +63,7 @@
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">{{ $producto->nombre }}</div>
-                                <div class="portfolio-caption-subheading text-muted">{{ $producto->servicio }}</div>
+                                <div class="portfolio-caption-subheading text-muted">{{ $producto->categoria->nombre }}</div>
                             </div>
                         </div>
                     </div>
@@ -279,8 +279,8 @@
                                     <p>{{ $producto->descripcion }}</p>
                                     <ul class="list-inline">
                                         <li>
-                                            <strong>Servicio:</strong>
-                                            {{ $producto->servicio }}
+                                            <strong>Categoría:</strong>
+                                            {{ $producto->categoria->nombre }}
                                         </li>
                                         <li>
                                             <strong>Precio:</strong>
