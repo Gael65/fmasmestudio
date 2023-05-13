@@ -1,0 +1,29 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Producto>
+ */
+class ProductoFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'nombre' => fake()->name(),
+            'concepto' => Str::random(10),
+            'descripcion' => Str::random(25),
+            'servicio' => Arr::random(['F + M Estudio', 'Librettura', 'Concrettura']),
+            'precio' => 99.99
+        ];
+    }
+}
