@@ -56,6 +56,8 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Crear producto</h2>
+                    <p> 
+                                {{ \App\Models\Categoria::where("id", 1)->get("nombre")[0]->nombre}} HOLA</p>
                 </div>
                 
                 <form action="/producto" method="POST" id="contactForm">
@@ -98,20 +100,20 @@
                             </div> -->
 
                             <div class="form-group">
-                                <!-- Servicio input-->
-                                <select class="form-control mb-1" id="servicio" name="servicio">
-                                    <option value="{{ old('servicio') ?? '' }}" hidden>{{ old('servicio') ?? "Servicio del producto *" }}</option>
-                                    <option value="F+M estudio">F+M estudio</option>
-                                    <option value="Librettura">Librettura</option>
-                                    <option value="Concrettura">Concrettura</option>
+                                <!-- categoria input-->
+                                <select class="form-control mb-1" id="categoria_id" name="categoria_id">
+                                    <option value="{{ old('categoria_id') ?? '' }}" hidden>{{ \App\Models\Categoria::find(old('categoria_id'))->nombre ?? "Categoría del producto *" }}</option>
+                                    @foreach($categorias as $categoria)
+                                        <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                    @endforeach
                                 </select>
 
-                                @error('servicio')
+                                @error('categoria_id')
                                     <!-- <p>{{ $message }}</p> -->
                                     <div class="alert alert-danger d-flex align-items-center p-2" role="alert">
                                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                         <div>
-                                        {{ $message }}
+                                        The categoria field is required.
                                         </div>
                                     </div>
                                 @enderror

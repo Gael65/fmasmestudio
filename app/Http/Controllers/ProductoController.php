@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -31,8 +32,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
-        return view('producto.createProducto');
+        $categorias = Categoria::all();
+        return view('producto.createProducto', compact('categorias'));
     }
 
     /**
@@ -47,7 +48,7 @@ class ProductoController extends Controller
             'nombre' => ['required', 'string', 'max:255', 'min:5'],
             'concepto' => ['required', 'string', 'max:255', 'min:5'],
             'descripcion' => ['required', 'string', 'min:5'],
-            'servicio' => ['required', 'string', 'max:255', 'min:5'],
+            'categoria_id' => ['required'],
             'precio' => ['required', 'numeric', 'min:1']
         ]);
 
@@ -58,7 +59,7 @@ class ProductoController extends Controller
         $producto->nombre = $request->nombre;
         $producto->concepto = $request->concepto;
         $producto->descripcion = $request->descripcion;
-        $producto->servicio = $request->servicio;
+        $producto->categoria_id = $request->categoria_id;
         $producto->precio = $request->precio;
         
         $producto->save();
@@ -85,7 +86,8 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('producto.editProducto', compact('producto'));
+        $categorias = Categoria::all();
+        return view('producto.editProducto', compact('producto', 'categorias'));
     }
 
     /**
@@ -101,7 +103,7 @@ class ProductoController extends Controller
             'nombre' => ['required', 'string', 'max:255', 'min:5'],
             'concepto' => ['required', 'string', 'max:255', 'min:5'],
             'descripcion' => ['required', 'string', 'min:5'],
-            'servicio' => ['required', 'string', 'max:255', 'min:5'],
+            'categoria_id' => ['required'],
             'precio' => ['required', 'numeric', 'min:1']
         ]);
 
@@ -110,7 +112,7 @@ class ProductoController extends Controller
         $producto->nombre = $request->nombre;
         $producto->concepto = $request->concepto;
         $producto->descripcion = $request->descripcion;
-        $producto->servicio = $request->servicio;
+        $producto->categoria_id = $request->categoria_id;
         $producto->precio = $request->precio;
         
         $producto->save();

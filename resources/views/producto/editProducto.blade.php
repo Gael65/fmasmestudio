@@ -99,20 +99,20 @@
                             </div> -->
 
                             <div class="form-group">
-                                <!-- Servicio input-->
-                                <select class="form-control mb-1" id="servicio" name="servicio">
-                                    <option value="{{ old('servicio') ?? $producto->servicio }}" hidden>{{ old('servicio') ?? $producto->servicio }}</option>
-                                    <option value="F+M estudio">F+M estudio</option>
-                                    <option value="Librettura">Librettura</option>
-                                    <option value="Concrettura">Concrettura</option>
+                                <!-- categoria input-->
+                                <select class="form-control mb-1" id="categoria_id" name="categoria_id">
+                                    <option value="{{ old('categoria_id') ?? '' }}" hidden>{{ \App\Models\Categoria::find(old('categoria_id'))->nombre ?? $producto->categoria->nombre }}</option>
+                                    @foreach($categorias as $categoria)
+                                        <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                    @endforeach
                                 </select>
 
-                                @error('servicio')
+                                @error('categoria_id')
                                     <!-- <p>{{ $message }}</p> -->
                                     <div class="alert alert-danger d-flex align-items-center p-2" role="alert">
                                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                         <div>
-                                            {{ $message }}
+                                        The categoria field is required.
                                         </div>
                                     </div>
                                 @enderror
