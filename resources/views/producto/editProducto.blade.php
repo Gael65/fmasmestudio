@@ -58,7 +58,7 @@
                     <h2 class="section-heading text-uppercase">Editar producto</h2>
                 </div>
                 
-                <form action="/producto/{{ $producto->id }}" method="POST" id="contactForm">
+                <form action="/producto/{{ $producto->id }}" class="formulario-editar" method="POST" id="contactForm">
                     @csrf
                     @method('PATCH')
                     <div class="row align-items-stretch mb-5">
@@ -101,7 +101,7 @@
                             <div class="form-group">
                                 <!-- categoria input-->
                                 <select class="form-control mb-1" id="categoria_id" name="categoria_id">
-                                    <option value="{{ old('categoria_id') ?? '' }}" hidden>{{ \App\Models\Categoria::find(old('categoria_id'))->nombre ?? $producto->categoria->nombre }}</option>
+                                    <option value="{{ old('categoria_id') ?? $producto->categoria_id }}" hidden>{{ \App\Models\Categoria::find(old('categoria_id'))->nombre ?? $producto->categoria->nombre }}</option>
                                     @foreach($categorias as $categoria)
                                         <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                     @endforeach
@@ -180,5 +180,28 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            $(".formulario-editar").on("submit", function(e){
+                e.preventDefault();
+
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esta acción no puede revertirse",
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, editar!',
+                    cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.submit();
+                    }
+                })
+            });
+        </script>
     </body>
 </html>

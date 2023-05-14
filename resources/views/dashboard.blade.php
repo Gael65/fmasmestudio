@@ -292,7 +292,7 @@
                                         Cerrar producto
                                     </button>
                                     <div class="mt-2">
-                                        <form action="{{ route('producto.destroy', $producto) }}" method="POST">
+                                        <form action="{{ route('producto.destroy', $producto) }}" class="formulario-eliminar" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-xl text-uppercase" data-bs-dismiss="modal" type="submit">
@@ -319,4 +319,53 @@
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        @if(session('eliminar') == 'ok')
+            Swal.fire(
+                '¡Eliminado!',
+                'El registro ha sido eliminado.',
+                'success'
+            )
+        @endif
+
+        @if(session('editar') == 'ok')
+            Swal.fire(
+                '¡Actualizado!',
+                'El registro ha sido modificado.',
+                'success'
+            )
+        @endif
+
+        @if(session('crear') == 'ok')
+            Swal.fire(
+                '¡Creado!',
+                'El registro ha sido creado.',
+                'success'
+            )
+        @endif
+    </script>
+
+    <script>
+        $(".formulario-eliminar").on("submit", function(e){
+            e.preventDefault();
+
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "Esta acción no puede revertirse",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, borrar!',
+                cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
 </x-app-layout>

@@ -60,7 +60,7 @@
                                 {{ \App\Models\Categoria::where("id", 1)->get("nombre")[0]->nombre}} HOLA</p>
                 </div>
                 
-                <form action="/producto" method="POST" id="contactForm">
+                <form action="/producto" method="POST" class="formulario-crear" id="contactForm">
                     @csrf
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
@@ -181,5 +181,7 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>

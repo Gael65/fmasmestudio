@@ -64,7 +64,7 @@ class ProductoController extends Controller
         
         $producto->save();
 
-        return redirect('/');
+        return redirect('/')->with('crear', 'ok');
     }
 
     /**
@@ -117,7 +117,7 @@ class ProductoController extends Controller
         
         $producto->save();
 
-        return redirect('/');
+        return redirect('/')->with('editar', 'ok');
     }
 
     /**
@@ -130,6 +130,6 @@ class ProductoController extends Controller
     {
         //
         $producto->delete();
-        return redirect('/');
+        return redirect('/')->with('eliminar', 'ok');
     }
 }
