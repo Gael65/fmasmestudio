@@ -56,8 +56,6 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Crear producto</h2>
-                    <p> 
-                                {{ \App\Models\Categoria::where("id", 1)->get("nombre")[0]->nombre}} HOLA</p>
                 </div>
                 
                 <form action="/producto" method="POST" class="formulario-crear" id="contactForm">
