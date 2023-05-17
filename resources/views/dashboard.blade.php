@@ -64,6 +64,14 @@
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">{{ $producto->nombre }}</div>
                                 <div class="portfolio-caption-subheading text-muted">{{ $producto->categoria->nombre }}</div>
+                                <form action="/producto/{{ $producto->id }}" class="formulario-editar" method="GET">
+                                    @csrf
+                                    <!-- @method('PATCH') -->
+                                    {{ count($producto->users) }}
+                                    <button id="submitButton" type="submit">
+                                        <i id="{{ $producto->id }}" onClick="toggleFunction(this)" class="fa-regular fa-heart circle-icon"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -279,16 +287,6 @@
                                     <p>{{ $producto->descripcion }}</p>
 
                                     <ul class="list-inline">
-                                        <li>
-                                            <form action="/producto/{{ $producto->id }}" class="formulario-editar" method="GET">
-                                                @csrf
-                                                <!-- @method('PATCH') -->
-                                                {{ count($producto->users) }}
-                                                <button id="submitButton" type="submit">
-                                                    <i id="{{ $producto->id }}" onClick="toggleFunction(this)" class="fa-regular fa-heart circle-icon"></i>
-                                                </button>
-                                            </form>
-                                        </li>
                                         <li>
                                             <strong>Categoría:</strong>
                                             {{ $producto->categoria->nombre }}
