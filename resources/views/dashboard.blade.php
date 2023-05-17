@@ -277,7 +277,14 @@
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/residencial2.png" alt="..." />
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/residencial3.png" alt="..." />
                                     <p>{{ $producto->descripcion }}</p>
+
+                                    <i id="{{ $producto->id }}" onClick="toggleFunction(this)" class="fa-regular fa-heart circle-icon"></i>
                                     <ul class="list-inline">
+                                        <li>
+                                            {{ count($producto->users) }}
+                                            <span class="fa-stack fa-1x">
+                                            </span>
+                                        </li>
                                         <li>
                                             <strong>Categoría:</strong>
                                             {{ $producto->categoria->nombre }}
@@ -367,5 +374,12 @@
                 }
             })
         });
+    </script>
+
+    <script>
+        // function toggleFunction(e) {
+        //     // element.classList.toggle('fa-solid')
+        //     e.setAttribute('class', '')
+        // }
     </script>
 </x-app-layout>

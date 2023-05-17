@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class Producto extends Model
 {
     use HasFactory;
@@ -38,5 +37,9 @@ class Producto extends Model
 
     public function getDescripcionAttribute($value){
         return ucfirst(strtolower($value));
+    }
+
+    public function users() {
+        return $this->belongsToMany(\App\Models\User::class, 'producto_user');
     }
 }
