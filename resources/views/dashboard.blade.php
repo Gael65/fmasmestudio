@@ -278,12 +278,16 @@
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/residencial3.png" alt="..." />
                                     <p>{{ $producto->descripcion }}</p>
 
-                                    <i id="{{ $producto->id }}" onClick="toggleFunction(this)" class="fa-regular fa-heart circle-icon"></i>
                                     <ul class="list-inline">
                                         <li>
-                                            {{ count($producto->users) }}
-                                            <span class="fa-stack fa-1x">
-                                            </span>
+                                            <form action="/producto/{{ $producto->id }}" class="formulario-editar" method="GET">
+                                                @csrf
+                                                <!-- @method('PATCH') -->
+                                                {{ count($producto->users) }}
+                                                <button id="submitButton" type="submit">
+                                                    <i id="{{ $producto->id }}" onClick="toggleFunction(this)" class="fa-regular fa-heart circle-icon"></i>
+                                                </button>
+                                            </form>
                                         </li>
                                         <li>
                                             <strong>Categoría:</strong>

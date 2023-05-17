@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductoController extends Controller
 {
@@ -75,7 +76,15 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        if (Auth::check()) {
+            $producto->users()->attach(Auth::id());
+            // dd($producto->users);
+
+            // if(in_array(Auth::id(), $producto->users()->id)){
+            //     $producto->users()->attach(Auth::id());
+            // }
+        }
+        return redirect('/');
     }
 
     /**
@@ -107,16 +116,23 @@ class ProductoController extends Controller
             'precio' => ['required', 'numeric', 'min:1']
         ]);
 
-        // dd($request->all());
-
         $producto->nombre = $request->nombre;
         $producto->concepto = $request->concepto;
         $producto->descripcion = $request->descripcion;
         $producto->categoria_id = $request->categoria_id;
         $producto->precio = $request->precio;
         
-        $producto->save();
+        
+        // if (Auth::check()) {
+        //     $producto->users()->attach(Auth::id());
+        //     // dd($producto->users);
 
+        //     // if(in_array(Auth::id(), $producto->users()->id)){
+        //     //     $producto->users()->attach(Auth::id());
+        //     // }
+        // }
+    
+        $producto->save();
         return redirect('/')->with('editar', 'ok');
     }
 
