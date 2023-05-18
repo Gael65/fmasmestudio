@@ -6,6 +6,7 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -50,15 +51,26 @@ class ProductoController extends Controller
             'concepto' => ['required', 'string', 'max:255', 'min:5'],
             'descripcion' => ['required', 'string', 'min:5'],
             'categoria_id' => ['required'],
-            'precio' => ['required', 'numeric', 'min:1']
+            'precio' => ['required', 'numeric', 'min:1'],
+            'imagenes' => ['required']
         ]);
 
         // dd($request->all());
+
+        // recuperar imagenes
+        $urls = [];
+
+        foreach($request->file('imagenes') as $img) {
+            array_push($urls, Storage::url($img->store('public/imagenes')));
+        }
+        
+        $urls = json_encode($urls);
 
         $producto = new Producto();
 
         $producto->nombre = $request->nombre;
         $producto->concepto = $request->concepto;
+        $producto->imagenes = $urls;
         $producto->descripcion = $request->descripcion;
         $producto->categoria_id = $request->categoria_id;
         $producto->precio = $request->precio;

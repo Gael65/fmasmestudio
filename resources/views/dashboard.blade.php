@@ -61,7 +61,7 @@
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/residencial1.png" alt="..." />
+                                <img class="img-fluid" src="{{ json_decode($producto->imagenes, true)[0] }}" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">{{ $producto->nombre }}</div>
@@ -286,10 +286,10 @@
                                     @can('update', $producto)
                                         <a href="/producto/{{ $producto->id }}/edit">Modificar</a>
                                     @endcan
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/residencial2.png" alt="..." />
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/residencial3.png" alt="..." />
+                                    @foreach(json_decode($producto->imagenes, true) as $img)
+                                        <img class="img-fluid d-block mx-auto" src="{{ $img }}" alt="..." />
+                                    @endforeach
                                     <p>{{ $producto->descripcion }}</p>
-
                                     <ul class="list-inline">
                                         <li>
                                             <strong>Categoría:</strong>

@@ -58,7 +58,7 @@
                     <h2 class="section-heading text-uppercase">Crear producto</h2>
                 </div>
                 
-                <form action="/producto" method="POST" class="formulario-crear" id="contactForm">
+                <form action="/producto" method="POST" class="formulario-crear" id="contactForm" enctype="multipart/form-data">
                     @csrf
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
@@ -130,6 +130,22 @@
                                         </div>
                                     </div>
                                 @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <!-- Nombre input-->
+                                <input class="form-control mb-1" id="imagenes" name="imagenes[]" type="file" accept="image/*" value="{{ old('nombre') }}" multiple />
+
+                                @error('imagenes')
+                                    <!-- <p>{{ $message }}</p> -->
+                                    <div class="alert alert-danger d-flex align-items-center p-2" role="alert">
+                                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                                        <div>
+                                            {{ $message }}
+                                        </div>
+                                    </div>
+                                @enderror
+                                
                             </div>
                         </div>
 
