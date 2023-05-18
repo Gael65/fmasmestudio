@@ -11,7 +11,7 @@ class ProductoController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('index');
     }
 
     /**
@@ -76,14 +76,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        if (Auth::check()) {
-            $producto->users()->attach(Auth::id());
-            // dd($producto->users);
-
-            // if(in_array(Auth::id(), $producto->users()->id)){
-            //     $producto->users()->attach(Auth::id());
-            // }
-        }
+        $producto->users()->attach(Auth::id());
         return redirect('/');
     }
 
