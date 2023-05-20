@@ -149,7 +149,13 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        // eliminar imagenes asociadas con el producto
+        foreach (json_decode($producto->imagenes, true) as $img) {
+            $url = str_replace('storage', 'public', $img);
+            Storage::delete($url);
+        }
+
+        //eliminar producto
         $producto->delete();
         return redirect('/')->with('eliminar', 'ok');
     }

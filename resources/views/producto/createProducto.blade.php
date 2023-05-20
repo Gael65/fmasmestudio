@@ -102,7 +102,7 @@
                                 <select class="form-control mb-1" id="categoria_id" name="categoria_id">
                                     <option value="{{ old('categoria_id') ?? '' }}" hidden>{{ \App\Models\Categoria::find(old('categoria_id'))->nombre ?? "Categoría del producto *" }}</option>
                                     @foreach($categorias as $categoria)
-                                        <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                                        <option class="select-options" value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                                     @endforeach
                                 </select>
 
@@ -133,7 +133,8 @@
                             </div>
 
                             <div class="form-group">
-                                <!-- Nombre input-->
+                                <!-- Imagenes input-->
+                                <label for="imagenes" class="label">Seleccionar imágenes:</label>
                                 <input class="form-control mb-1" id="imagenes" name="imagenes[]" type="file" accept="image/*" value="{{ old('nombre') }}" multiple />
 
                                 @error('imagenes')

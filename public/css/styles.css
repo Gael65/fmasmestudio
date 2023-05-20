@@ -11785,3 +11785,15 @@ section#contact form#contactForm :-ms-input-placeholder {
 .circle-icon{
   color: #899B5A;
 }
+
+#categoria_id {
+  font-family: "Montserrat";
+  font-weight: 600;
+  color: #ced4da;
+}
+
+.label {
+  font-family: "Montserrat";
+  font-weight: 700;
+  color: #ced4da;
+}
