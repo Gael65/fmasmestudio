@@ -22,7 +22,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
+        $productos = Producto::with('categoria')->get();
 
         return view('dashboard', compact('productos'));
     }

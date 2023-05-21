@@ -18,6 +18,10 @@ Route::get('/', [ProductoController::class, 'index'])->name('dashboard');
 
 Route::resource('/producto', ProductoController::class);
 
+Route::get('api/v1', function() {
+    return response()->json(App\Models\Producto::all());
+});
+
 // Route::get('/', function () {
 //     return view('welcome');
 // })->name('home');
